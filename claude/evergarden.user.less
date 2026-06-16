@@ -1,0 +1,305 @@
+/* ==UserStyle==
+@name Claude Evergarden
+@namespace local.evergarden/styles/claude
+@version 2026.04.11.1
+@description Evergarden Winter theme for Claude
+@author Gabe
+@license MIT
+
+@preprocessor less
+
+==/UserStyle== */
+
+// Evergarden Winter palette (replaces the Catppuccin lib import).
+// Color roles are mapped from Catppuccin's naming so the rest of this
+// file (written against @red, @blue, @overlay0, etc.) keeps working.
+@flavor: evergarden;
+@rosewater: #f6cee5;
+@flamingo: #f3c0e5;
+@pink: #f3c0e5;
+@mauve: #d0bbf0;
+@red: #f57f82;
+@maroon: #f57f82;
+@peach: #f7a182;
+@yellow: #f5d098;
+@green: #cae0a7;
+@teal: #addeb9;
+@sky: #afdfe6;
+@sapphire: #ace0d4;
+@blue: #b2cfed;
+@lavender: #d0bbf0;
+@text: #f8f9e8;
+@subtext1: #adc9bc;
+@subtext0: #96b4aa;
+@overlay2: #839e9a;
+@overlay1: #6f8788;
+@overlay0: #58686d;
+@surface2: #4a585c;
+@surface1: #3d494d;
+@surface0: #2d393d;
+@base: #1d2428;
+@mantle: #1a2024;
+@crust: #171c1f;
+@accent: #d0bbf0;
+@contrast: #f57f82;
+
+@rosewater-filter: brightness(0) saturate(100%) invert(64%) sepia(47%) saturate(283%) hue-rotate(275deg) brightness(125%) contrast(110%);
+@flamingo-filter: brightness(0) saturate(100%) invert(82%) sepia(71%) saturate(227%) hue-rotate(279deg) brightness(87%) contrast(123%);
+@pink-filter: brightness(0) saturate(100%) invert(82%) sepia(71%) saturate(227%) hue-rotate(279deg) brightness(87%) contrast(123%);
+@mauve-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(90%) hue-rotate(215deg) brightness(74%) contrast(184%);
+@red-filter: brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(299%) hue-rotate(310deg) brightness(111%) contrast(159%);
+@maroon-filter: brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(299%) hue-rotate(310deg) brightness(111%) contrast(159%);
+@peach-filter: brightness(0) saturate(100%) invert(36%) sepia(29%) saturate(397%) hue-rotate(330deg) brightness(163%) contrast(161%);
+@yellow-filter: brightness(0) saturate(100%) invert(36%) sepia(100%) saturate(102%) hue-rotate(357deg) brightness(170%) contrast(141%);
+@green-filter: brightness(0) saturate(100%) invert(67%) sepia(24%) saturate(311%) hue-rotate(41deg) brightness(116%) contrast(108%);
+@teal-filter: brightness(0) saturate(100%) invert(78%) sepia(78%) saturate(81%) hue-rotate(82deg) brightness(80%) contrast(138%);
+@sky-filter: brightness(0) saturate(100%) invert(77%) sepia(78%) saturate(63%) hue-rotate(140deg) brightness(76%) contrast(185%);
+@sapphire-filter: brightness(0) saturate(100%) invert(73%) sepia(21%) saturate(312%) hue-rotate(116deg) brightness(112%) contrast(94%);
+@blue-filter: brightness(0) saturate(100%) invert(80%) sepia(25%) saturate(297%) hue-rotate(170deg) brightness(97%) contrast(92%);
+@lavender-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(90%) hue-rotate(215deg) brightness(74%) contrast(184%);
+@text-filter: brightness(0) saturate(100%) invert(62%) sepia(33%) saturate(295%) hue-rotate(8deg) brightness(193%) contrast(95%);
+@subtext1-filter: brightness(0) saturate(100%) invert(62%) sepia(11%) saturate(307%) hue-rotate(100deg) brightness(115%) contrast(114%);
+@subtext0-filter: brightness(0) saturate(100%) invert(94%) sepia(95%) saturate(230%) hue-rotate(79deg) brightness(87%) contrast(55%);
+@overlay2-filter: brightness(0) saturate(100%) invert(50%) sepia(13%) saturate(310%) hue-rotate(122deg) brightness(113%) contrast(117%);
+@overlay1-filter: brightness(0) saturate(100%) invert(42%) sepia(17%) saturate(183%) hue-rotate(134deg) brightness(115%) contrast(166%);
+@overlay0-filter: brightness(0) saturate(100%) invert(40%) sepia(27%) saturate(177%) hue-rotate(148deg) brightness(95%) contrast(107%);
+@surface2-filter: brightness(0) saturate(100%) invert(9%) sepia(96%) saturate(246%) hue-rotate(147deg) brightness(154%) contrast(50%);
+@surface1-filter: brightness(0) saturate(100%) invert(46%) sepia(44%) saturate(362%) hue-rotate(149deg) brightness(30%) contrast(65%);
+@surface0-filter: brightness(0) saturate(100%) invert(19%) sepia(78%) saturate(59%) hue-rotate(149deg) brightness(130%) contrast(132%);
+@base-filter: brightness(0) saturate(100%) invert(30%) sepia(37%) saturate(287%) hue-rotate(150deg) brightness(33%) contrast(92%);
+@mantle-filter: brightness(0) saturate(100%) invert(26%) sepia(33%) saturate(330%) hue-rotate(158deg) brightness(33%) contrast(93%);
+@crust-filter: brightness(0) saturate(100%) invert(22%) sepia(29%) saturate(362%) hue-rotate(166deg) brightness(33%) contrast(94%);
+@accent-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(90%) hue-rotate(215deg) brightness(74%) contrast(184%);
+@contrast-filter: brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(299%) hue-rotate(310deg) brightness(111%) contrast(159%);
+
+#lib {
+  .rgbify(@color) {
+    @rgb: red(@color), green(@color), blue(@color);
+  }
+  .hslify(@color) {
+    @raw: e(%("%s, %s%, %s%", hue(@color), saturation(@color), lightness(@color)));
+  }
+}
+
+@-moz-document domain("claude.ai") {
+  :root[data-color-version="v2"] {
+    &[data-mode="dark"] {
+      #evergarden();
+    }
+    &[data-mode="light"] {
+      #evergarden();
+    }
+  }
+
+  #evergarden() {
+    color-scheme: dark;
+
+    ::selection {
+      background-color: fade(@accent, 30%);
+    }
+
+    input,
+    textarea {
+      &::placeholder {
+        color: @subtext0 !important;
+      }
+    }
+
+    --accent-brand: #hslify(@accent)[];
+    --accent-000: #hslify(@accent)[];
+    --accent-100: #hslify(@accent)[];
+    --accent-200: #hslify(lighten(@accent, 5%))[];
+    --accent-900: #hslify(darken(@accent, 10%))[];
+    --accent-main-000: #hslify(@accent)[];
+    --accent-main-100: #hslify(@accent)[];
+    --accent-main-200: #hslify(@accent)[];
+    --accent-main-900: #hslify(@accent)[];
+    --accent-pro-000: #hslify(@accent)[];
+    --accent-pro-100: #hslify(@accent)[];
+    --accent-pro-200: #hslify(@accent)[];
+    --accent-pro-900: #hslify(@accent)[];
+    --accent-secondary-000: #hslify(@accent)[];
+    --accent-secondary-100: #hslify(@accent)[];
+    --accent-secondary-200: #hslify(@accent)[];
+    --accent-secondary-900: #hslify(@accent)[];
+    --bg-000: #hslify(@surface0)[];
+    --bg-100: #hslify(@base)[];
+    --bg-200: #hslify(@mantle)[];
+    --bg-300: #hslify(@surface0)[];
+    --bg-400: #hslify(@surface1)[];
+    --bg-500: #hslify(@surface2)[];
+    --brand-000: #hslify(@accent)[];
+    --brand-100: #hslify(lighten(@accent, 5%))[];
+    --brand-200: #hslify(lighten(@accent, 5%))[];
+    --brand-900: #hslify(@crust)[];
+    --border-000: #hslify(@base)[];
+    --border-100: #hslify(@crust)[];
+    --border-200: #hslify(@crust)[];
+    --border-300: #hslify(@overlay0)[];
+    --border-400: #hslify(@overlay1)[];
+    --border-500: #hslify(@overlay2)[];
+    --danger-000: #hslify(@maroon)[];
+    --danger-100: #hslify(@red)[];
+    --danger-200: #hslify(@red)[];
+    --danger-900: #hslify(@pink)[];
+    --oncolor-000: #hslify(darken(@mantle, 5%))[];
+    --oncolor-100: #hslify(@mantle)[];
+    --oncolor-200: #hslify(@mantle)[];
+    --oncolor-300: #hslify(lighten(@mantle, 5%))[];
+    --success-000: #hslify(@green)[];
+    --success-100: #hslify(lighten(@green, 5%))[];
+    --success-200: #hslify(lighten(@green, 5%))[];
+    --success-900: #hslify(lighten(@green, 15%))[];
+    --text-000: #hslify(darken(@text, 5%))[];
+    --text-100: #hslify(@text)[];
+    --text-200: #hslify(@text)[];
+    --text-300: #hslify(@subtext0)[];
+    --text-400: #hslify(@subtext1)[];
+    --text-500: #hslify(@subtext0)[];
+    --warning-000: #hslify(@yellow)[];
+    --warning-100: #hslify(lighten(@yellow, 5%))[];
+    --warning-200: #hslify(lighten(@yellow, 5%))[];
+    --warning-900: #hslify(lighten(@yellow, 15%))[];
+
+    /* Side bar */
+    nav.\!bg-bg-200 {
+      background: @mantle !important;
+    }
+
+    /* Code blocks */
+    .code-block__code {
+      background: @crust !important;
+
+      code {
+        /* Default color */
+        span {
+          color: @text !important;
+        }
+
+        /* Green */
+        span.token[style="color: rgb(152, 195, 121);"] {
+          color: @green !important;
+        }
+
+        /* Yellow */
+        span.token[style="color: rgb(209, 154, 102);"] {
+          color: @yellow !important;
+        }
+
+        /* Blue */
+        span.token[style="color: rgb(97, 175, 239);"] {
+          color: @blue !important;
+        }
+
+        /* Red */
+        span.token[style="color: rgb(224, 108, 117);"] {
+          color: @red !important;
+        }
+
+        /* Magenta */
+        span.token[style="color: rgb(198, 120, 221);"] {
+          color: @mauve !important;
+        }
+
+        /* Gray */
+        span.token[style="color: rgb(171, 178, 191);"] {
+          color: @overlay2 !important;
+        }
+      }
+    }
+
+    /* Inline code */
+    code.text-danger-000 {
+      color: @accent !important;
+    }
+
+    /* Tooltip */
+    div.bg-black\/80 {
+      background: @crust !important;
+    }
+    div.text-white {
+      color: @text !important;
+    }
+
+    /* Logo */
+    div.text-\[\#D97757\] {
+      color: @accent !important;
+    }
+
+    /* "New chat" plus icon */
+    div.text-always-white svg {
+      color: @base !important;
+    }
+
+    /* "Subscribe to Pro" and "Create Team Account" buttons */
+    button.bg-accent-pro-100 > span.inline-block {
+      color: @base !important;
+    }
+
+    /* Pay monthly/annually buttons */
+    button.bg-accent-secondary-900 {
+      span.text-text-000 {
+        color: @base !important;
+      }
+      span.text-text-300 {
+        color: @surface2 !important;
+      }
+      div.bg-accent-secondary-000 {
+        background: darken(@accent, 15%) !important;
+      }
+    }
+
+    /* Delete conversation button */
+    div.\!text-danger-000.\[\&\[data-highlighted\]\]\:bg-danger-900[data-highlighted] {
+      background: fade(@red, 20%) !important;
+    }
+
+    /* Checkbox */
+    input[type="checkbox"] + div.bg-bg-000 {
+      background: @text !important;
+    }
+
+    /* "Add writing example" button */
+    button.\!text-accent-secondary-100.bg-accent-secondary-900 {
+      color: @base !important;
+      &:hover {
+        color: @text !important;
+      }
+    }
+
+    /* "Describe your style" list */
+    button.\!bg-accent-secondary-900.text-accent-secondary-000 {
+      color: @base !important;
+    }
+
+    /* "Be as descriptive as possible..." helper text */
+    div.bg-accent-secondary-900.text-text-200 {
+      color: @base !important;
+    }
+
+    /* "Preview with an example..." pills */
+    button.hover\:bg-accent-secondary-900.hover\:text-accent-secondary-000 {
+      color: @accent !important;
+      &:hover {
+        color: @base !important;
+      }
+    }
+
+    /* "Previewing with ..." dropdown button */
+    button.\!text-accent-secondary-100.hover\:\!bg-accent-secondary-900 {
+      color: @accent !important;
+      &:hover {
+        color: @base !important;
+      }
+    }
+
+    /* White background (e.g., toggle switch thumb) */
+    .bg-white {
+      background-color: @text;
+    }
+  }
+}
+
+#hslify(@color) {
+  @raw: e(%("%s %s% %s%", hue(@color), saturation(@color), lightness(@color)));
+}

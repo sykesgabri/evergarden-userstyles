@@ -1,0 +1,274 @@
+/* ==UserStyle==
+@name Modrinth Evergarden
+@namespace local.evergarden/styles/modrinth
+@version 2026.04.13
+@description Evergarden Winter theme for Modrinth
+@author Gabe
+@license MIT
+
+@preprocessor less
+
+==/UserStyle== */
+
+// Evergarden Winter palette (replaces the Catppuccin lib import).
+// Color roles are mapped from Catppuccin's naming so the rest of this
+// file (written against @red, @blue, @overlay0, etc.) keeps working.
+@flavor: evergarden;
+@rosewater: #f6cee5;
+@flamingo: #f3c0e5;
+@pink: #f3c0e5;
+@mauve: #d0bbf0;
+@red: #f57f82;
+@maroon: #f57f82;
+@peach: #f7a182;
+@yellow: #f5d098;
+@green: #cae0a7;
+@teal: #addeb9;
+@sky: #afdfe6;
+@sapphire: #ace0d4;
+@blue: #b2cfed;
+@lavender: #d0bbf0;
+@text: #f8f9e8;
+@subtext1: #adc9bc;
+@subtext0: #96b4aa;
+@overlay2: #839e9a;
+@overlay1: #6f8788;
+@overlay0: #58686d;
+@surface2: #4a585c;
+@surface1: #3d494d;
+@surface0: #2d393d;
+@base: #1d2428;
+@mantle: #1a2024;
+@crust: #171c1f;
+@accent: #d0bbf0;
+@contrast: #f57f82;
+
+@rosewater-filter: brightness(0) saturate(100%) invert(64%) sepia(47%) saturate(283%) hue-rotate(275deg) brightness(125%) contrast(110%);
+@flamingo-filter: brightness(0) saturate(100%) invert(82%) sepia(71%) saturate(227%) hue-rotate(279deg) brightness(87%) contrast(123%);
+@pink-filter: brightness(0) saturate(100%) invert(82%) sepia(71%) saturate(227%) hue-rotate(279deg) brightness(87%) contrast(123%);
+@mauve-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(90%) hue-rotate(215deg) brightness(74%) contrast(184%);
+@red-filter: brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(299%) hue-rotate(310deg) brightness(111%) contrast(159%);
+@maroon-filter: brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(299%) hue-rotate(310deg) brightness(111%) contrast(159%);
+@peach-filter: brightness(0) saturate(100%) invert(36%) sepia(29%) saturate(397%) hue-rotate(330deg) brightness(163%) contrast(161%);
+@yellow-filter: brightness(0) saturate(100%) invert(36%) sepia(100%) saturate(102%) hue-rotate(357deg) brightness(170%) contrast(141%);
+@green-filter: brightness(0) saturate(100%) invert(67%) sepia(24%) saturate(311%) hue-rotate(41deg) brightness(116%) contrast(108%);
+@teal-filter: brightness(0) saturate(100%) invert(78%) sepia(78%) saturate(81%) hue-rotate(82deg) brightness(80%) contrast(138%);
+@sky-filter: brightness(0) saturate(100%) invert(77%) sepia(78%) saturate(63%) hue-rotate(140deg) brightness(76%) contrast(185%);
+@sapphire-filter: brightness(0) saturate(100%) invert(73%) sepia(21%) saturate(312%) hue-rotate(116deg) brightness(112%) contrast(94%);
+@blue-filter: brightness(0) saturate(100%) invert(80%) sepia(25%) saturate(297%) hue-rotate(170deg) brightness(97%) contrast(92%);
+@lavender-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(90%) hue-rotate(215deg) brightness(74%) contrast(184%);
+@text-filter: brightness(0) saturate(100%) invert(62%) sepia(33%) saturate(295%) hue-rotate(8deg) brightness(193%) contrast(95%);
+@subtext1-filter: brightness(0) saturate(100%) invert(62%) sepia(11%) saturate(307%) hue-rotate(100deg) brightness(115%) contrast(114%);
+@subtext0-filter: brightness(0) saturate(100%) invert(94%) sepia(95%) saturate(230%) hue-rotate(79deg) brightness(87%) contrast(55%);
+@overlay2-filter: brightness(0) saturate(100%) invert(50%) sepia(13%) saturate(310%) hue-rotate(122deg) brightness(113%) contrast(117%);
+@overlay1-filter: brightness(0) saturate(100%) invert(42%) sepia(17%) saturate(183%) hue-rotate(134deg) brightness(115%) contrast(166%);
+@overlay0-filter: brightness(0) saturate(100%) invert(40%) sepia(27%) saturate(177%) hue-rotate(148deg) brightness(95%) contrast(107%);
+@surface2-filter: brightness(0) saturate(100%) invert(9%) sepia(96%) saturate(246%) hue-rotate(147deg) brightness(154%) contrast(50%);
+@surface1-filter: brightness(0) saturate(100%) invert(46%) sepia(44%) saturate(362%) hue-rotate(149deg) brightness(30%) contrast(65%);
+@surface0-filter: brightness(0) saturate(100%) invert(19%) sepia(78%) saturate(59%) hue-rotate(149deg) brightness(130%) contrast(132%);
+@base-filter: brightness(0) saturate(100%) invert(30%) sepia(37%) saturate(287%) hue-rotate(150deg) brightness(33%) contrast(92%);
+@mantle-filter: brightness(0) saturate(100%) invert(26%) sepia(33%) saturate(330%) hue-rotate(158deg) brightness(33%) contrast(93%);
+@crust-filter: brightness(0) saturate(100%) invert(22%) sepia(29%) saturate(362%) hue-rotate(166deg) brightness(33%) contrast(94%);
+@accent-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(90%) hue-rotate(215deg) brightness(74%) contrast(184%);
+@contrast-filter: brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(299%) hue-rotate(310deg) brightness(111%) contrast(159%);
+
+#lib {
+  .rgbify(@color) {
+    @rgb: red(@color), green(@color), blue(@color);
+  }
+  .hslify(@color) {
+    @raw: e(%("%s, %s%, %s%", hue(@color), saturation(@color), lightness(@color)));
+  }
+}
+
+@-moz-document domain("modrinth.com") {
+  .light,
+  .light-mode,
+  .light-properties,
+  html {
+    #evergarden();
+  }
+
+  .dark,
+  .dark-mode,
+  .oled-mode,
+  :root[data-theme="dark"] {
+    #evergarden();
+  }
+
+  #evergarden() {
+    color-scheme: dark;
+
+    ::selection {
+      background-color: fade(@accent, 30%);
+    }
+
+    input,
+    textarea {
+      &::placeholder {
+        color: @subtext0 !important;
+      }
+    }
+
+    // TODO: Use Catppuccin palette colors? `fade()`-ed?
+    @shadow: if(@flavor = latte, #dbdfef, #010409);
+
+    #css-variables() !important;
+
+    // homepage
+    .blob-demonstration,
+    .blob-demonstration::after {
+      background: linear-gradient(
+        0deg,
+        fade(@accent, 20%),
+        fade(@base, 10%)
+      ) !important;
+    }
+    .logo-banner path {
+      fill: @accent !important;
+    }
+    .logo-banner > svg > g > rect {
+      display: none;
+    }
+
+    [tabindex="0"]:focus-visible,
+    a:focus-visible,
+    button:focus-visible {
+      outline-color: @accent;
+    }
+
+    .BDVE3s9MFQttmbMUeYup-2 a b,
+    .BDVE3s9MFQttmbMUeYup-2 a strong {
+      color: @accent;
+    }
+
+    // dropdown icon
+    .multiselect__select::before {
+      border-color: @text transparent transparent;
+      color: @text;
+    }
+    // header button hover
+    .btn-wrapper:hover {
+      a,
+      button {
+        --tw-brightness: none !important;
+      }
+    }
+    .nuxt-loading-indicator {
+      background: @accent !important;
+    }
+
+    #css-variables() {
+      --text-color: @text;
+      --color-base: @text;
+      --color-bg: @crust;
+      --color-secondary: @subtext0;
+      --color-ad-raised: @surface2;
+      --color-ad: @surface1;
+      --color-ad-highlight: @teal;
+      --color-brand: @accent;
+      --color-brand-green: @green;
+      --color-button-bg-active: @overlay0;
+      --color-button-bg-selected: fade(@accent, 25%);
+      --color-button-bg-hover: @surface1;
+      --color-button-bg: @surface0;
+      --color-button-text-hover: @text;
+      --color-button-text: @subtext1;
+      --color-button-text-active: @text;
+      --color-button-text-selected: @accent;
+      --color-divider: @surface0;
+      --color-divider-dark: @surface2;
+      --color-heading: @text;
+      --color-icon: @text;
+      --color-link-active: @sapphire;
+      --color-link-hover: @sky;
+      --color-link: @blue;
+      --color-raised-bg: @base;
+      --color-blue: @sapphire;
+      --color-special-blue: @sapphire;
+      --color-orange: @peach;
+      --color-special-orange: @peach;
+      --color-purple: @mauve;
+      --color-special-purple: @mauve;
+      --color-red: @red;
+      --color-gray: @subtext0;
+      --color-special-gray: @subtext0;
+      --color-green: @green;
+      --color-text: @subtext1;
+      --color-text-dark: @text;
+      --color-text-inactive: @overlay1;
+      --color-brand-highlight: fade(@accent, 25%);
+      --color-brand-inverted: @shadow;
+      --color-table-alternate-row: @crust;
+      --color-table-border: @overlay0;
+      --color-contrast: @text;
+      --color-accent-contrast: @mantle;
+      --color-red-highlight: fade(@red, 25%);
+      --color-orange-highlight: fade(@peach, 25%);
+      --color-green-highlight: fade(@accent, 25%);
+      --color-blue-highlight: fade(@blue, 25%);
+      --color-purple-highlight: fade(@mauve, 25%);
+      --color-gray-highlight: fade(@text, 25%);
+      --color-red-bg: fade(@red, 20%);
+      --color-orange-bg: fade(@peach, 25%);
+      --color-green-bg: fade(@accent, 25%);
+      --color-blue-bg: fade(@blue, 25%);
+      --color-purple-bg: fade(@mauve, 25%);
+      --color-brand-shadow: @accent;
+      --color-warning-banner-side: @red;
+      --color-warning-banner-bg: fade(@red, 25%);
+      --color-warning-banner-text: @text;
+      --color-platform-fabric: @rosewater;
+      --color-platform-quilt: @mauve;
+      --color-platform-forge: @lavender;
+      --color-platform-neoforge: @peach;
+      --color-platform-liteloader: @sky;
+      --color-platform-bukkit: @peach;
+      --color-platform-bungeecord: @yellow;
+      --color-platform-folia: @green;
+      --color-platform-paper: @red;
+      --color-platform-purpur: @mauve;
+      --color-platform-spigot: @yellow;
+      --color-platform-velocity: @teal;
+      --color-platform-waterfall: @blue;
+      --color-platform-sponge: @yellow;
+      --color-platform-ornithe: @teal;
+      --color-platform-bta-babric: @green;
+      --color-platform-legacy-fabric: @lavender;
+      --color-platform-nilloader: @pink;
+      --color-button-border: fade(@crust, 20%);
+      --color-tooltip-bg: @surface1;
+      --color-tooltip-text: @subtext1;
+      --landing-green-label: @accent;
+      --landing-green-label-bg: fade(@accent, 10%);
+      --landing-blue-label: @blue;
+      --landing-color-heading: @text;
+      --landing-color-subheading: @subtext0;
+      --landing-border-color: @overlay0;
+      --landing-blue-label-bg: fade(@blue, 10%);
+      --landing-border-gradient: linear-gradient(
+        to bottom right,
+        @overlay0,
+        @surface2
+      );
+      --brand-gradient-strong-bg: linear-gradient(
+        270deg,
+        fade(@accent, 5%) 10%,
+        fade(@accent, 15%)
+      );
+      --brand-gradient-border: fade(@accent, 10%);
+
+      --surface-1: @crust;
+      --surface-1-5: mix(@crust, @mantle, 50%);
+      --surface-2: @mantle;
+      --surface-2-5: mix(@mantle, @base, 50%);
+      --surface-3: @base;
+      --surface-4: @surface0;
+      --surface-5: @surface2;
+
+      --color-text-primary: @text;
+      --color-text-default: @subtext1;
+      --color-text-tertiary: @subtext0;
+    }
+  }
+}

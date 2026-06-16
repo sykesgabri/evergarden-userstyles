@@ -1,0 +1,734 @@
+/* ==UserStyle==
+@name AniList/AniChart Evergarden
+@namespace local.evergarden/styles/anilist
+@version 2025.09.06
+@description Evergarden Winter theme for AniList and AniChart
+@author Gabe
+@license MIT
+
+@preprocessor less
+
+==/UserStyle== */
+
+// Evergarden Winter palette (replaces the Catppuccin lib import).
+// Color roles are mapped from Catppuccin's naming so the rest of this
+// file (written against @red, @blue, @overlay0, etc.) keeps working.
+@flavor: evergarden;
+@rosewater: #f6cee5;
+@flamingo: #f3c0e5;
+@pink: #f3c0e5;
+@mauve: #d0bbf0;
+@red: #f57f82;
+@maroon: #f57f82;
+@peach: #f7a182;
+@yellow: #f5d098;
+@green: #cae0a7;
+@teal: #addeb9;
+@sky: #afdfe6;
+@sapphire: #ace0d4;
+@blue: #b2cfed;
+@lavender: #d0bbf0;
+@text: #f8f9e8;
+@subtext1: #adc9bc;
+@subtext0: #96b4aa;
+@overlay2: #839e9a;
+@overlay1: #6f8788;
+@overlay0: #58686d;
+@surface2: #4a585c;
+@surface1: #3d494d;
+@surface0: #2d393d;
+@base: #1d2428;
+@mantle: #1a2024;
+@crust: #171c1f;
+@accent: #d0bbf0;
+@contrast: #f57f82;
+
+@rosewater-filter: brightness(0) saturate(100%) invert(64%) sepia(47%) saturate(283%) hue-rotate(275deg) brightness(125%) contrast(110%);
+@flamingo-filter: brightness(0) saturate(100%) invert(82%) sepia(71%) saturate(227%) hue-rotate(279deg) brightness(87%) contrast(123%);
+@pink-filter: brightness(0) saturate(100%) invert(82%) sepia(71%) saturate(227%) hue-rotate(279deg) brightness(87%) contrast(123%);
+@mauve-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(90%) hue-rotate(215deg) brightness(74%) contrast(184%);
+@red-filter: brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(299%) hue-rotate(310deg) brightness(111%) contrast(159%);
+@maroon-filter: brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(299%) hue-rotate(310deg) brightness(111%) contrast(159%);
+@peach-filter: brightness(0) saturate(100%) invert(36%) sepia(29%) saturate(397%) hue-rotate(330deg) brightness(163%) contrast(161%);
+@yellow-filter: brightness(0) saturate(100%) invert(36%) sepia(100%) saturate(102%) hue-rotate(357deg) brightness(170%) contrast(141%);
+@green-filter: brightness(0) saturate(100%) invert(67%) sepia(24%) saturate(311%) hue-rotate(41deg) brightness(116%) contrast(108%);
+@teal-filter: brightness(0) saturate(100%) invert(78%) sepia(78%) saturate(81%) hue-rotate(82deg) brightness(80%) contrast(138%);
+@sky-filter: brightness(0) saturate(100%) invert(77%) sepia(78%) saturate(63%) hue-rotate(140deg) brightness(76%) contrast(185%);
+@sapphire-filter: brightness(0) saturate(100%) invert(73%) sepia(21%) saturate(312%) hue-rotate(116deg) brightness(112%) contrast(94%);
+@blue-filter: brightness(0) saturate(100%) invert(80%) sepia(25%) saturate(297%) hue-rotate(170deg) brightness(97%) contrast(92%);
+@lavender-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(90%) hue-rotate(215deg) brightness(74%) contrast(184%);
+@text-filter: brightness(0) saturate(100%) invert(62%) sepia(33%) saturate(295%) hue-rotate(8deg) brightness(193%) contrast(95%);
+@subtext1-filter: brightness(0) saturate(100%) invert(62%) sepia(11%) saturate(307%) hue-rotate(100deg) brightness(115%) contrast(114%);
+@subtext0-filter: brightness(0) saturate(100%) invert(94%) sepia(95%) saturate(230%) hue-rotate(79deg) brightness(87%) contrast(55%);
+@overlay2-filter: brightness(0) saturate(100%) invert(50%) sepia(13%) saturate(310%) hue-rotate(122deg) brightness(113%) contrast(117%);
+@overlay1-filter: brightness(0) saturate(100%) invert(42%) sepia(17%) saturate(183%) hue-rotate(134deg) brightness(115%) contrast(166%);
+@overlay0-filter: brightness(0) saturate(100%) invert(40%) sepia(27%) saturate(177%) hue-rotate(148deg) brightness(95%) contrast(107%);
+@surface2-filter: brightness(0) saturate(100%) invert(9%) sepia(96%) saturate(246%) hue-rotate(147deg) brightness(154%) contrast(50%);
+@surface1-filter: brightness(0) saturate(100%) invert(46%) sepia(44%) saturate(362%) hue-rotate(149deg) brightness(30%) contrast(65%);
+@surface0-filter: brightness(0) saturate(100%) invert(19%) sepia(78%) saturate(59%) hue-rotate(149deg) brightness(130%) contrast(132%);
+@base-filter: brightness(0) saturate(100%) invert(30%) sepia(37%) saturate(287%) hue-rotate(150deg) brightness(33%) contrast(92%);
+@mantle-filter: brightness(0) saturate(100%) invert(26%) sepia(33%) saturate(330%) hue-rotate(158deg) brightness(33%) contrast(93%);
+@crust-filter: brightness(0) saturate(100%) invert(22%) sepia(29%) saturate(362%) hue-rotate(166deg) brightness(33%) contrast(94%);
+@accent-filter: brightness(0) saturate(100%) invert(72%) sepia(100%) saturate(90%) hue-rotate(215deg) brightness(74%) contrast(184%);
+@contrast-filter: brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(299%) hue-rotate(310deg) brightness(111%) contrast(159%);
+
+#lib {
+  .rgbify(@color) {
+    @rgb: red(@color), green(@color), blue(@color);
+  }
+  .hslify(@color) {
+    @raw: e(%("%s, %s%, %s%", hue(@color), saturation(@color), lightness(@color)));
+  }
+}
+
+@-moz-document domain("anilist.co"), domain("anichart.net") {
+  body:not(.site-theme-dark) {
+    #evergarden();
+  }
+  .site-theme-dark {
+    #evergarden();
+  }
+
+  #evergarden() {
+
+    color-scheme: dark;
+
+    ::selection {
+      background-color: fade(@accent, 30%);
+    }
+
+    input,
+    textarea {
+      &::placeholder {
+        color: @subtext0 !important;
+      }
+    }
+
+    & when (@flavor = latte) {
+      --color-blue-dim: #lib.rgbify(desaturate(lighten(@accent, 10%), 10%))[];
+
+      .nav[data-v-62eacfff],
+      .solid[data-v-62eacfff],
+      .transparent[data-v-62eacfff]:hover {
+        background: darken(@text, 10%);
+        color: @base;
+      }
+
+      .nav-unscoped.transparent {
+        background: fade(darken(@text, 10%), 50%);
+      }
+    }
+
+    --color-background: #lib.rgbify(@crust)[];
+    --color-foreground: #lib.rgbify(@base)[];
+    --color-foreground-grey: #lib.rgbify(@surface0)[];
+    --color-foreground-grey-dark: #lib.rgbify(darken(@surface0, 5%))[];
+    --color-foreground-blue: #lib.rgbify(@mantle)[];
+    --color-foreground-blue-dark: #lib.rgbify(@mantle)[];
+    --color-background-blue-dark: #lib.rgbify(@subtext1)[];
+    --color-overlay: #lib.rgbify(@surface0)[];
+    --color-shadow: #lib.rgbify(@mantle)[];
+    --color-shadow-dark: #lib.rgbify(darken(@text, 10%))[];
+    --color-shadow-blue: #lib.rgbify(@blue)[];
+    --color-text: #lib.rgbify(@text)[];
+    --color-text-light: #lib.rgbify(@subtext1)[];
+    --color-text-lighter: #lib.rgbify(@subtext0)[];
+    --color-text-bright: #lib.rgbify(if(@flavor = latte, @crust, @text))[];
+    --color-blue: #lib.rgbify(@accent)[];
+    --color-white: 255, 255, 255;
+    --color-black: 0, 0, 0;
+    --color-red: #lib.rgbify(@contrast)[];
+    --color-peach: #lib.rgbify(@maroon)[];
+    --color-orange: #lib.rgbify(@peach)[];
+    --color-yellow: #lib.rgbify(@yellow)[];
+    --color-green: #lib.rgbify(@green)[];
+    --color-background-1200: #lib.rgbify(@text)[];
+    --color-background-1100: #lib.rgbify(@text)[];
+    --color-background-1000: #lib.rgbify(@text)[];
+    --color-background-900: #lib.rgbify(@subtext1)[];
+    --color-background-800: #lib.rgbify(@subtext0)[];
+    --color-background-700: #lib.rgbify(@surface1)[];
+    --color-background-600: #lib.rgbify(@surface0)[];
+    --color-background-500: #lib.rgbify(@surface0)[];
+    --color-background-400: #lib.rgbify(@surface0)[];
+    --color-background-300: #lib.rgbify(@base)[];
+    --color-background-200: #lib.rgbify(@mantle)[];
+    --color-background-100: #lib.rgbify(@crust)[];
+    --color-gray-1200: #lib.rgbify(@text)[];
+    --color-gray-1100: #lib.rgbify(@text)[];
+    --color-gray-1000: #lib.rgbify(@text)[];
+    --color-gray-900: #lib.rgbify(@text)[];
+    --color-gray-800: #lib.rgbify(@overlay2)[];
+    --color-gray-700: #lib.rgbify(@overlay1)[];
+    --color-gray-600: #lib.rgbify(@overlay0)[];
+    --color-gray-500: #lib.rgbify(@surface2)[];
+    --color-gray-400: #lib.rgbify(@surface1)[];
+    --color-gray-300: #lib.rgbify(@surface0)[];
+    --color-gray-200: #lib.rgbify(@mantle)[];
+    --color-gray-100: #lib.rgbify(@crust)[];
+    --color-blue-100: #lib.rgbify(@text)[];
+    --color-blue-200: #lib.rgbify(@text)[];
+    --color-blue-300: #lib.rgbify(@text)[];
+    --color-blue-400: #lib.rgbify(@sapphire)[];
+    --color-blue-500: #lib.rgbify(@sapphire)[];
+    --color-blue-600: #lib.rgbify(@blue)[];
+    --color-blue-700: #lib.rgbify(@blue)[];
+    --color-blue-800: #lib.rgbify(@blue)[];
+    --color-blue-900: #lib.rgbify(@blue)[];
+    --color-blue-1000: #lib.rgbify(@blue)[];
+    --color-green-100: #lib.rgbify(@teal)[];
+    --color-green-200: #lib.rgbify(@green)[];
+    --color-green-300: #lib.rgbify(@green)[];
+    --color-green-400: #lib.rgbify(@green)[];
+    --color-green-500: #lib.rgbify(@green)[];
+    --color-green-600: #lib.rgbify(@green)[];
+    --color-green-700: #lib.rgbify(@green)[];
+    --color-green-800: #lib.rgbify(@green)[];
+    --color-red-100: #lib.rgbify(@text)[];
+    --color-red-200: #lib.rgbify(@flamingo)[];
+    --color-red-300: #lib.rgbify(@maroon)[];
+    --color-red-400: #lib.rgbify(@red)[];
+    --color-red-500: #lib.rgbify(@red)[];
+    --color-red-600: #lib.rgbify(@red)[];
+    --color-red-700: #lib.rgbify(@red)[];
+
+    & when not(@flavor = latte) {
+      --color-background: #lib.rgbify(@crust)[];
+      --color-foreground: #lib.rgbify(@base)[];
+      --color-foreground-grey: #lib.rgbify(@surface0)[];
+      --color-foreground-grey-dark: #lib.rgbify(darken(@surface0, 5%))[];
+      --color-foreground-blue: #lib.rgbify(@mantle)[];
+      --color-foreground-blue-dark: #lib.rgbify(@mantle)[];
+      --color-text: #lib.rgbify(@text)[];
+      --color-text-light: #lib.rgbify(@subtext0)[];
+      --color-text-lighter: #lib.rgbify(@subtext1)[];
+      --color-shadow-dark: #lib.rgbify(@crust)[];
+      --color-shadow-blue: #lib.rgbify(@crust)[];
+      --color-background-1200: #lib.rgbify(@text)[];
+      --color-background-1100: #lib.rgbify(@text)[];
+      --color-background-1000: #lib.rgbify(@text)[];
+      --color-background-900: #lib.rgbify(@subtext1)[];
+      --color-background-800: #lib.rgbify(@subtext0)[];
+      --color-background-700: #lib.rgbify(@surface1)[];
+      --color-background-600: #lib.rgbify(@surface0)[];
+      --color-background-500: #lib.rgbify(@surface0)[];
+      --color-background-400: #lib.rgbify(@surface0)[];
+      --color-background-300: #lib.rgbify(@base)[];
+      --color-background-200: #lib.rgbify(@mantle)[];
+      --color-background-100: #lib.rgbify(@crust)[];
+      --color-gray-1200: #lib.rgbify(@text)[];
+      --color-gray-1100: #lib.rgbify(@text)[];
+      --color-gray-1000: #lib.rgbify(@text)[];
+      --color-gray-900: #lib.rgbify(@text)[];
+      --color-gray-800: #lib.rgbify(@overlay2)[];
+      --color-gray-700: #lib.rgbify(@overlay1)[];
+      --color-gray-600: #lib.rgbify(@overlay0)[];
+      --color-gray-500: #lib.rgbify(@surface2)[];
+      --color-gray-400: #lib.rgbify(@surface1)[];
+      --color-gray-300: #lib.rgbify(@surface0)[];
+      --color-gray-200: #lib.rgbify(@mantle)[];
+      --color-gray-100: #lib.rgbify(@crust)[];
+
+      --color-blue-dim: #lib.rgbify(desaturate(darken(@accent, 10%), 10%))[];
+    }
+
+    /* DARK THEME NAV BAR */
+    .nav-unscoped when not(@flavor = latte) {
+      background-color: @mantle;
+    }
+    .nav-unscoped.transparent when not(@flavor = latte) {
+      background-color: fade(@mantle, 50%);
+    }
+    .nav-unscoped.transparent:hover when not(@flavor = latte) {
+      background-color: @mantle;
+      color: @subtext0;
+    }
+
+    /* -----------------PROFILE FIXES----------------- */
+    #profileColor(@color) {
+      --color-blue: #lib.rgbify(@color)[];
+      & when (@flavor = latte) {
+        --color-blue-dim: #lib.rgbify(lighten(@color, 10%))[];
+      }
+      & when not(@flavor = latte) {
+        --color-blue-dim: #lib.rgbify(darken(@color, 10%))[];
+      }
+      .progress .bar {
+        background: linear-gradient(270deg, darken(@color, 10%), @color);
+      }
+    }
+    .user-page-unscoped.orange {
+      #profileColor(@peach);
+    }
+    .user-page-unscoped.green {
+      #profileColor(@green);
+    }
+    .user-page-unscoped.purple {
+      #profileColor(@mauve);
+    }
+    .user-page-unscoped.red {
+      #profileColor(@red);
+    }
+    .user-page-unscoped.blue {
+      #profileColor(@blue);
+    }
+    .user-page-unscoped.pink {
+      #profileColor(@pink);
+    }
+    .user-page-unscoped.gray {
+      #profileColor(@overlay1);
+    }
+    .history-day {
+      --color-foreground-grey-dark: #lib.rgbify(@crust)[];
+    }
+    .x-axis {
+      --color-background-300: #lib.rgbify(@surface0)[];
+    }
+    /* Fixes gap between stats */
+    @media (max-width: 1540px) {
+      .stats-wrap {
+        grid-row-gap: 25px;
+      }
+    }
+
+    /* ----Tracking Status List Stuff---- */
+    .list[data-v-5776f768] {
+      color: @mantle !important;
+    }
+    .media-card .list-status[status="Repeating"] {
+      background: @pink;
+    }
+    .banner .el-icon-arrow-down::before {
+      color: @text !important;
+    }
+    .el-textarea__inner::placeholder {
+      color: @overlay1;
+    }
+    .el-dropdown-menu,
+    .el-dropdown-menu__item--divided::before,
+    .el-select-dropdown {
+      background-color: @surface0 !important;
+    }
+    .el-popper[x-placement^="bottom"] .popper__arrow::after,
+    .el-popper[x-placement^="bottom"] .popper__arrow,
+    .el-tooltip__popper[x-placement^="bottom"] .popper__arrow::after,
+    .el-tooltip__popper[x-placement^="bottom"] .popper__arrow {
+      border-bottom-color: @surface0;
+    }
+    .el-popper[x-placement^="top"] .popper__arrow::after,
+    .el-popper[x-placement^="top"] .popper__arrow,
+    .el-tooltip__popper[x-placement^="top"] .popper__arrow,
+    .el-tooltip__popper[x-placement^="top"] .popper__arrow::after {
+      border-top-color: @surface0;
+    }
+    .el-dropdown .feed-filter {
+      color: @overlay0;
+    }
+    .el-dropdown-menu {
+      border-color: @text !important;
+    }
+    .el-dropdown-menu__item--divided when not(@flavor = latte) {
+      border-top-color: @surface1;
+    }
+    .el-select-dropdown__item.hover,
+    .el-select-dropdown__item:hover {
+      background-color: @base;
+    }
+    .el-select-dropdown__item.selected {
+      color: @accent;
+    }
+    .el-tooltip__popper.is-dark {
+      background: @surface0;
+      color: @text;
+    }
+    .tooltip > div {
+      --color-white: #lib.rgbify(@text)[];
+    }
+    .dropdown {
+      --color-gray-100: #lib.rgbify(@base)[];
+      --color-background-100: #lib.rgbify(@base)[];
+      --color-background-200: #lib.rgbify(@mantle)[];
+    }
+    .medialist .notes {
+      --color-overlay: #lib.rgbify(@surface0)[];
+    }
+    .el-input__inner::placeholder,
+    .el-input__prefix {
+      color: @overlay1;
+    }
+    .el-picker-panel {
+      color: @text;
+      background-color: @surface0;
+      border-color: @surface1;
+    }
+    .el-date-table th {
+      color: @overlay1;
+      border-bottom-color: @surface1;
+    }
+    .el-date-picker__header-label {
+      color: @subtext0;
+
+      &:hover {
+        color: @accent;
+      }
+    }
+    .el-picker-panel__icon-btn {
+      color: @overlay1;
+
+      &:hover {
+        color: @accent;
+      }
+    }
+    .el-date-table td.available:hover {
+      color: @accent;
+    }
+    .el-date-table td.current:not(.disabled) span {
+      color: @crust;
+      background-color: @accent;
+    }
+    .el-date-table td.next-month,
+    .el-date-table td.prev-month {
+      color: @surface2;
+    }
+
+    /* ---------SCORE TWEAKS-------------- */
+    .score[data-v-5ca094da] {
+      color: @base;
+    }
+
+    /* --------------FOOTER--------------- */
+    .footer[data-v-0f519cab] {
+      background: @text;
+      color: @crust;
+
+      h2 {
+        color: rgb(var(--color-blue));
+      }
+
+      & when (@flavor = latte) {
+        --color-blue: #lib.rgbify(lighten(@accent, 30%))[];
+      }
+
+      & when not(@flavor = latte) {
+        background: @mantle;
+        color: @subtext0;
+      }
+    }
+
+    /* ------------------SEARCH PAGES------------------ */
+    .search,
+    .expand-description,
+    .studio {
+      --color-background-200: #lib.rgbify(@crust)[];
+    }
+    .search-wrap,
+    .filters,
+    .extra-filters-wrap,
+    .select,
+    .options {
+      --color-background-100: #lib.rgbify(@base)[];
+    }
+    .filter.select-wrap .options {
+      --color-background-100: #lib.rgbify(@mantle)[];
+    }
+
+    /* ------------------MISC EDITS-------------------- */
+    .list-editor-wrap .header::after {
+      background: fade(@mantle, 50%);
+    }
+    .filter.clear-all {
+      --color-background-500: #lib.rgbify(@overlay1)[];
+    }
+    /* --Reset button in notifications----- */
+    .reset-btn {
+      color: @base !important;
+    }
+    /* Publish Button in Replies and Messages */
+    .save {
+      color: @base !important;
+    }
+    .el-radio {
+      color: @overlay1;
+    }
+    /* Mod Stuff */
+    .el-color-dropdown__link-btn {
+      color: @accent;
+    }
+    .el-color-picker__color {
+      border-color: @surface1;
+    }
+    .el-color-picker__panel {
+      background-color: @surface0;
+      border-color: @surface1;
+    }
+    .el-color-dropdown__btn {
+      border-color: @surface2;
+      color: @subtext1;
+
+      &:hover {
+        background-color: transparent;
+        border-color: @accent;
+        color: @accent;
+      }
+    }
+    /* Accent Text */
+    .input .hint {
+      --color-white: #lib.rgbify(@text)[];
+    }
+    .el-checkbox__input.is-checked + .el-checkbox__label {
+      color: @accent;
+    }
+    .button,
+    .option.active,
+    .new-badge,
+    .submissions .user .stats > div,
+    .actions .icon,
+    .submissions .status,
+    .adult-label,
+    .header .btn,
+    .media-tag-editor .btn,
+    [data-v-843c77a2] .btn,
+    [data-v-22855988] .btn,
+    .btn[data-v-156b3973],
+    .btn[data-v-dceb4a66],
+    .favourite-btn,
+    .dialog .btn,
+    .tag,
+    .filter,
+    .media .header div,
+    .list-editor-wrap .header .save-btn,
+    .actions > div:not(.donator-badge),
+    .banner-content .mod-badge-wrap,
+    .external-link.no-color,
+    .count.circle,
+    .el-dropdown-menu__item,
+    .delete,
+    .list-editor-wrap .list-editor .body .delete-btn,
+    .open-user-search,
+    .save-btn {
+      & when not(@flavor = latte) {
+        --color-white: #lib.rgbify(@crust)[];
+      }
+    }
+    .submit-btn,
+    .random-btn {
+      & when not(@flavor = latte) {
+        color: @crust;
+      }
+    }
+    .user .notification-dot,
+    .create-btn {
+      & when not(@flavor = latte) {
+        color: @crust !important;
+      }
+    }
+    .el-radio__inner::after {
+      & when not(@flavor = latte) {
+        background-color: @crust;
+      }
+    }
+    .icon,
+    .check {
+      & when not(@flavor = latte) {
+        --color-blue-300: #lib.rgbify(@crust)[];
+      }
+    }
+    /* ------------IMAGE COVER------------ */
+    .cover .image-text,
+    .plus-progress {
+      color: @text !important;
+    }
+
+    .entry .plus-progress,
+    .medialist.table .entry .edit {
+      color: @base !important;
+    }
+    /* --------SETTINGS-------- */
+    .el-radio__inner when not(@flavor = latte) {
+      background-color: @text;
+    }
+    .el-checkbox__input.is-checked .el-checkbox__inner,
+    .el-radio__input.is-checked .el-radio__inner {
+      background-color: @accent;
+      border-color: @accent;
+    }
+    .el-checkbox__inner::after {
+      border-color: @crust;
+      border-width: 2px;
+      left: 3px;
+    }
+    .el-radio__input.is-checked + .el-radio__label {
+      color: @accent;
+    }
+    /* --------HIDE SCROLLBAR IN BIO----- */
+    .section::-webkit-scrollbar {
+      display: none;
+    }
+    .section {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* --------REMOVE DROPDOWN SHADOWS----- */
+    .dropdown.dropdown {
+      box-shadow: none;
+    }
+    /* ---------ANILIST LIKER PLUGIN------ */
+    #AnilistLikerPlugin .btntop {
+      margin-bottom: -4px;
+      margin-top: 5px;
+    }
+    #AnilistLikerPlugin .btnbottom {
+      margin-top: -2px;
+    }
+    /* ---------AUTOMAIL TWEAKS--------- */
+    .hohMediaScore {
+      border-color: @surface0;
+      padding: 4px;
+      border-radius: 10px;
+      margin-left: 0;
+      background-color: @base;
+      color: @accent;
+    }
+    .activity-feed .hohNoteSuffix:not(:empty),
+    .activity-feed .hohRewatchSuffix:not(:empty),
+    .activity-feed .hohScore:not(.hohSmiley),
+    .hohFeedScore .hohScore {
+      border-radius: 5px;
+      padding: 2.5px 5px 1px !important;
+      color: @subtext1 !important;
+      background-color: @surface0;
+
+      &:not(:first-of-type) {
+        margin: 3px;
+      }
+    }
+    .activity-feed .hohRewatchSuffix:not(:empty) {
+      padding-left: 2px !important;
+    }
+    .hohExtraFilters button {
+      margin-bottom: 20px;
+    }
+    .filter-group.compare-btn,
+    .hohButton {
+      color: @base;
+    }
+    .hohButton,
+    .hohCheckbox input:checked + .el-checkbox__inner {
+      background-color: @accent;
+    }
+    .hohCheckbox input:checked + .el-checkbox__inner {
+      border-color: @accent;
+    }
+    .medialist.table .entry:hover,
+    .medialist.table .entry .title a:hover,
+    .compare-btn[data-v-170179fc]:hover {
+      color: @base;
+    }
+    .hohCompare table {
+      background-color: @crust;
+    }
+    .hohAnimeTable,
+    .hohAnimeTable td,
+    .hohUserRow td,
+    .hohUserRow th,
+    .hohHeaderRow td,
+    .hohHeaderRow th {
+      border-color: @surface0 !important;
+    }
+    .hohUserRow td {
+      border-top-color: @surface0 !important;
+    }
+    .hohUserRow tr {
+      border-right-color: @surface0 !important;
+    }
+    hr {
+      color: @surface0;
+    }
+    .hohCheckbox
+      input:checked
+      + .el-checkbox__inner
+      .like-wrap.thread
+      .button.liked
+      .fa-heart,
+    .actions .favourite.liked .fa-heart,
+    .like-wrap.thread .button.isFavourite .fa-heart,
+    .actions .favourite.isFavourite .fa-heart,
+    .actions .favourite {
+      & when not(@flavor = latte) {
+        --color-white: #lib.rgbify(@crust)[];
+      }
+    }
+  }
+}
+
+@-moz-document domain("anichart.net") {
+  body:not(.site-theme-dark) {
+    #evergarden();
+  }
+  .site-theme-dark {
+    #evergarden();
+  }
+
+  #evergarden() {
+    color-scheme: dark;
+
+    ::selection {
+      background-color: fade(@accent, 30%);
+    }
+
+    input,
+    textarea {
+      &::placeholder {
+        color: @subtext0 !important;
+      }
+    }
+
+    .login[data-v-0d5bfbcd],
+    .login[data-v-0d5bfbcd]:hover {
+      color: @base;
+    }
+
+    [fill="#3db4f2" i] {
+      fill: @accent !important;
+    }
+
+    & when not(@flavor = latte) {
+      .nav {
+        background: @mantle;
+      }
+
+      .external-link {
+        background: @surface1;
+
+        [stroke="#fff" i] {
+          stroke: @text !important;
+        }
+      }
+
+      .external-link .icon,
+      .dropdown-menu:hover {
+        --color-white: #lib.rgbify(@crust)[];
+      }
+
+      [fill="#fff" i] {
+        fill: @crust !important;
+      }
+    }
+
+    & when (@flavor = latte) {
+      --color-overlay: #lib.rgbify(@text)[];
+
+      .external-link {
+        background: @subtext0;
+      }
+
+      .nav {
+        background: @text;
+      }
+
+      a.title {
+        --color-white: #lib.rgbify(@base)[];
+      }
+    }
+  }
+}
